@@ -1,11 +1,11 @@
 package Banking;
 
-public class AccountFactory {
+public class AccountCreator {
 
     private static int uniqueId = 0;
 
     public static void incrementUniqueId(int inc) {
-        AccountFactory.uniqueId += inc;
+        AccountCreator.uniqueId += inc;
     }
 
     public Account createAccount(String name, int customerId){
