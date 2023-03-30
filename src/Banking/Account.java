@@ -1,6 +1,6 @@
 package Banking;
 
-
+import Card.*;
 
 
 import java.util.*;
@@ -11,6 +11,10 @@ public class Account implements Comparator<Transaction> {
     protected double amount;
     protected String name;
     protected int customerId;
+
+    protected List<Card> cards = new ArrayList<>();
+
+    private final CardCreator cardFactory = new CardCreator();
 
 
 
@@ -50,6 +54,11 @@ public class Account implements Comparator<Transaction> {
         return transactions;
     }
 
+    public void addCard(String name){
+        Card newCard = cardFactory.addCard(this.IBAN, name);
+        cards.add(newCard);
+    }
+
 
 
     public int compare(Transaction transaction1, Transaction transaction2){
@@ -78,6 +87,10 @@ public class Account implements Comparator<Transaction> {
 
     public double getAmount() {
         return amount;
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 
 
