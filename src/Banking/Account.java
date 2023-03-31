@@ -38,6 +38,7 @@ public class Account implements Comparator<Transaction> {
 
 
 
+
     public List<Transaction> filterTransactions(List<Transaction> allTransactions){
         List<Transaction> transactions = new ArrayList<>();
         for(var transaction: allTransactions)
