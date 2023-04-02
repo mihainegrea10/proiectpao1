@@ -1,7 +1,6 @@
 package Banking;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
