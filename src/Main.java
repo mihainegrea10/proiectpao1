@@ -11,18 +11,7 @@ public class Main {
     static List<String> availableCommands = Arrays.asList("create_customer", "create_customer_card", "get_customer", "get_customer_amount", "get_customer_accounts", "load_customer_account", "create_transaction", "create_customer_account", "create_customer_savings_account", "close_customer_account", "get_customer_transactions", "help", "end");
     static List<String> commandsDescriptions = Arrays.asList("Creează cont client", "Creează card client", "Afișare detalii client", "Preluare sold client", "Preluare conturi client", "Încărcare cont client", "Creeare tranzacție", "Creare cont client", "Creare cont de economii", "Închidere cont client", "Preluare transacții client", "Afișează comenzi", "Finalizare");
 
-    public static Connection getConnection() {
-        try{
-            String url = "jdbc:mysql://localhost:3306/proiectpao";
-            String user = "root";
-            String password = "rqbJVALFjsfeaKAp";
 
-            return DriverManager.getConnection(url, user, password);
-        }catch (SQLException e){
-            System.out.println(e.toString());
-            return null;
-        }
-    }
 
     private static void printAllCommands(){
         for(int i=0;i<availableCommands.size();++i)
