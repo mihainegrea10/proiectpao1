@@ -1,4 +1,5 @@
 APLICATIE BANCARA
+
 (conturi, extras de cont, tranzactii, carduri, servicii)
 
 ACTIUNI / INTEROGARI:
