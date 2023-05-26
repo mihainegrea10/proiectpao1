@@ -2,7 +2,8 @@ package Customer;
 
 import Banking.*;
 
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -28,6 +29,21 @@ public class Customer {
     public Customer(int customerId, Scanner in) throws ParseException {
         this.customerId = customerId;
         this.read(in);
+    }
+    public Customer(int customerId, ResultSet in) throws SQLException {
+        this.customerId = customerId;
+        this.read(in);
+    }
+
+    public void read(ResultSet in) throws SQLException {
+        this.firstName = in.getString("firstName");
+        this.lastName = in.getString("lastName");
+        this.CNP = in.getString("CNP");
+        this.birthDate = in.getDate("birthDate");
+        this.email = in.getString("email");
+        this.phone = in.getString("phone");
+
+
     }
 
 

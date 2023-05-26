@@ -1,6 +1,7 @@
 package Banking;
 
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,6 +30,14 @@ public class Transaction {
         this.description = description;
         this.creationDate = creationDate;
     }
+    public Transaction(ResultSet in) throws SQLException {
+        this.fromIBAN = in.getString("fromIBAN");
+        this.toIBAN = in.getString("toIBAN");
+        this.amount = in.getDouble("amount");
+        this.description = in.getString("description");
+        this.creationDate = in.getDate("creationDate");
+    }
+
 
 
 

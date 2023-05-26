@@ -1,7 +1,7 @@
 import Banking.*;
 import Customer.Customer;
 import Customer.CustomerCreator;
-
+import Customer.CustomerDatabase;
 
 import java.text.ParseException;
 import java.util.*;
@@ -13,6 +13,10 @@ public class MainService {
     private final Map<String, Account> accountsMap = new HashMap<>();
     private final CustomerCreator customerCreator = new CustomerCreator();
     private final AccountCreator accountCreator = new AccountCreator();
+    private CustomerDatabase customerDatabase = null;
+    private TransactionDatabase transactionDatabase = null;
+    private AccountDatabase accountDatabase = null;
+    private SavingsAccountDatabase savingsAccountDatabase = null;
     public List<Customer> getCustomers() {
         return customers;
     }
@@ -37,6 +41,19 @@ public class MainService {
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
     }
+    public MainService(CustomerDatabase customerDatabase, TransactionDatabase transactionDatabase, AccountDatabase accountDatabase, SavingsAccountDatabase savingsAccountDatabase) {
+        this.customerDatabase = customerDatabase;
+        this.transactionDatabase = transactionDatabase;
+        this.accountDatabase = accountDatabase;
+        this.savingsAccountDatabase = savingsAccountDatabase;
+
+        this.customers = customerDatabase.read();
+        this.transactions = transactionDatabase.read();
+        this.accounts = accountDatabase.read();
+        this.savingsAccounts = savingsAccountDatabase.read();
+
+        this.linkAccounts();
+    }
     public MainService(){ }
     private Customer getCustomerFromInput(Scanner in) throws Exception{
         if(this.customers.size()==0)
@@ -57,6 +74,10 @@ public class MainService {
         var newAccount = accountCreator.createAccount(newCustomer.getFirstName() + " " + newCustomer.getLastName(), newCustomer.getCustomerId());
         this.accounts.add(newAccount);
         this.accountsMap.put(newAccount.getIBAN(), newAccount);
+        if(this.customerDatabase!=null)
+            this.customerDatabase.create(newCustomer);
+        if(this.accountDatabase!=null)
+            this.accountDatabase.create(newAccount);
         System.out.println("Customer created");
     }
     public void getCustomer(Scanner in) throws Exception {
@@ -95,6 +116,8 @@ public class MainService {
         Account newAccount = this.accountCreator.createAccount(name, customer.getCustomerId());
         accounts.add(newAccount);
         accountsMap.put(newAccount.getIBAN(), newAccount);
+        if(this.accountDatabase!=null)
+            this.accountDatabase.create(newAccount);
 
         System.out.println("Account created");
     }
@@ -104,6 +127,8 @@ public class MainService {
         String name = in.nextLine();
         SavingsAccount newSavingsAccount = this.accountCreator.createSavingsAccount(name, customer.getCustomerId());
         this.savingsAccounts.add(newSavingsAccount);
+        if(this.savingsAccountDatabase!=null)
+            this.savingsAccountDatabase.create(newSavingsAccount);
 
         System.out.println("Savings Account created");
     }
@@ -151,6 +176,12 @@ public class MainService {
 
         var newTransaction = new Transaction(IBAN1, IBAN2, amount, description);
         this.transactions.add(newTransaction);
+        if(this.transactionDatabase!=null)
+            this.transactionDatabase.create(newTransaction);
+        if(this.accountDatabase!=null) {
+            this.accountDatabase.update(account1);
+            this.accountDatabase.update(account2);
+        }
 
         System.out.println("Transaction finished");
     }
@@ -164,6 +195,8 @@ public class MainService {
             throw new Exception("The account savings are not empty!");
         this.accountsMap.remove(account.getIBAN());
         this.accounts.remove(account);
+        if(this.accountDatabase!=null)
+            this.accountDatabase.delete(account);
 
         System.out.println("Account closed!");
     }

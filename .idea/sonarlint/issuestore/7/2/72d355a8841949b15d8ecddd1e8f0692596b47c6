@@ -1,0 +1,18 @@
+
+k	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÙæŠøÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¤œ¨
+h	java:S116"NRename this field "CVV" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Šü«Ëúÿÿÿÿ
+d	java:S116
+"ORename this field "IBAN" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Ïé•
+<
+java:S1659"!Declare "CVV" on a separate line.(Šü«Ëúÿÿÿÿ
+8
+java:S1659	""Declare "name" on a separate line.(§Ú”Ö
+[
+java:S1124"EReorder the modifiers to comply with the Java Language Specification.(ÔèÍ
+N	java:S106%"9Replace this use of System.out or System.err by a logger.(Î‰ô
+S	java:S106'"9Replace this use of System.out or System.err by a logger.(•°¬ñûÿÿÿÿ
+4
+java:S2119-"Save and re-use this "Random".(½“Áœ
+3
+java:S21192"Save and re-use this "Random".(€¤¯

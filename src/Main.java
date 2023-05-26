@@ -1,10 +1,27 @@
-
+import Customer.CustomerDatabase;
 import java.util.*;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import Banking.*;
 public class Main {
 
     static List<String> availableCommands = Arrays.asList("create_customer", "create_customer_card", "get_customer", "get_customer_amount", "get_customer_accounts", "load_customer_account", "create_transaction", "create_customer_account", "create_customer_savings_account", "close_customer_account", "get_customer_transactions", "help", "end");
     static List<String> commandsDescriptions = Arrays.asList("Creează cont client", "Creează card client", "Afișare detalii client", "Preluare sold client", "Preluare conturi client", "Încărcare cont client", "Creeare tranzacție", "Creare cont client", "Creare cont de economii", "Închidere cont client", "Preluare transacții client", "Afișează comenzi", "Finalizare");
+
+    public static Connection getConnection() {
+        try{
+            String url = "jdbc:mysql://localhost:3306/proiectpao1";
+            String user = "root";
+            String password = "";
+
+            return DriverManager.getConnection(url, user, password);
+        }catch (SQLException e){
+            System.out.println(e.toString());
+            return null;
+        }
+    }
+
 
 
 
@@ -19,10 +36,20 @@ public class Main {
 
 
 
+
+
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         boolean end = false;
-        MainService mainService = new MainService();
+        var connection = Main.getConnection();
+
+        var transactionDatabase = new TransactionDatabase(connection);
+        var customerDatabase = new CustomerDatabase(connection);
+
+        var accountDatabase = new AccountDatabase(connection);
+        var savingsAccountDatabase = new SavingsAccountDatabase(connection);
+
+        MainService mainService = new MainService(customerDatabase, transactionDatabase, accountDatabase, savingsAccountDatabase);
 
 
 
@@ -52,6 +79,12 @@ public class Main {
             }catch (Exception e){
                 System.out.println(e.toString());
             }
+        }
+        try{
+            assert connection != null;
+            connection.close();
+        }catch (Exception e){
+            System.out.println(e.toString());
         }
 
 
