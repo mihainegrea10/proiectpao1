@@ -1,5 +1,5 @@
 ## Aplicație Bancară
-Aceasta platforma contine generalele actiuni disponibile la o banca, oferind optiunea de a-ti crea un cont la acea banca. Dupa crearea unui cont, clientul are optiunea de a-is poate face atat card cat si un cont de economii. De asemenea se pot crea si tranzactii. Pentru informatii complete clientul isi poate efectua si un extras de cont.
+Aceasta platforma contine generalele actiuni disponibile la o banca, oferind optiunea de a-ti crea un cont la acea banca. Dupa crearea unui cont, clientul are optiunea de a-si poate face atat card cat si un cont de economii. De asemenea se pot crea si tranzactii. Pentru informatii complete clientul isi poate efectua si un extras de cont.
 
 
 ### Actiuni / Interogari:
