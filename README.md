@@ -1,5 +1,4 @@
 ## Aplicație Bancară
-Aplcatia mea reprezinta o interfata a unei aplicatii bancare.
 (conturi, extras de cont, tranzactii, carduri, servicii)
 
 ### Actiuni / Interogari:
